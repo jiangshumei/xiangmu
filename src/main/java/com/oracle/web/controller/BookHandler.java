@@ -86,7 +86,6 @@ public class BookHandler {
 
 		// System.out.println("pp");
 		return "redirect:/showByPage";
-
 	}
 	
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
