@@ -88,7 +88,7 @@ public class BookHandler {
 		return "redirect:/showByPage";
 
 	}
-
+	
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
 	public String updateUI(@PathVariable(value = "id") Integer id, HttpSession session) {
 
