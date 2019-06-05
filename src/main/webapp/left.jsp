@@ -42,7 +42,7 @@
 	<div>
 	  <ul>
 	    <li><a href="addFenlei.jsp" target="right"><span class="ui-icon ui-icon-plusthick"></span>添加分类</a></li>
-	    <li><a href="FenleiServlet?action=showFenleiByPage" target="right"><span class="ui-icon ui-icon-folder-open"></span>查看分类</a></li>
+	    <li><a href="fenleis/1" target="right"><span class="ui-icon ui-icon-folder-open"></span>查看分类</a></li>
 	  </ul>
 	</div>
    

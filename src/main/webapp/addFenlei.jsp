@@ -1,50 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!-- 1.要使用Bootstrap的话，必须是html5文档 -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 1.要使用Bootstrap的话，必须是html5文档-->
 <meta charset="UTF-8">
 <!-- 2.移动设备优先 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 3.导入核心的css文件 -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 3.导入核心的CSS文件 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<!-- 4.需要引入JQuery文件 -->
-<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
-<!-- 5.引入BootStrap的核心JS文件 -->
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrapValidator.css" />
+<!-- 4.需要引入jQuery文件 -->
+<script type="text/javascript" src="bootstrap/js/jQuery.js"></script>
+<!-- 5.引入Bootstrap的核心JS文件 -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<c:if test="${!(empty msg) }">
-	<script>
-		alert("${msg }");
-	</script>
-	<c:remove var="msg" scope="session" />
-</c:if>
+<script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <title>添加分类</title>
+<script type="text/javascript">
+
+
+$(function(){
+	
+	 $(".form-horizontal").bootstrapValidator({
+		  
+		  feedbackIcons:{
+			  
+			  valid : "glyphicon glyphicon-ok",
+			  invalid : "glyphicon glyphicon-remove",
+			  validating : "glyphicon glyphicon-refresh"
+			  
+		  },
+		  
+		 fields:{
+		  
+	    fname:{
+			  
+			  validators :{
+				  
+				   notEmpty : {
+
+
+						message : '分类名不能为空'
+
+
+					},
+
+
+					 regexp : {
+
+
+						regexp : /^[\u4e00-\u9fa5]{1,15}$/,
+						message : '分类名必须是1-15位的汉字'
+
+					},    
+				  
+					remote:{
+					 
+						message:'该分类已被添加，请重新输入',
+					    url:"queryone",
+					
+					    type:'post',
+					  
+					    data:function(validator){
+						  
+						  return{
+							  
+							  fname:$("input[name=fname]").val()
+						  }
+					  }
+				  }
+				 
+			  }
+		  }
+	  }
+});
+	 
+	 
+}); 
+
+
+</script>
 </head>
 <body background="images/03.jpg">
-	<form action="FenleiServlet?action=addFenlei" method="post">
-		<table align="center" width="400px" height="200px" cellspacing="0">
-			<br>
-			<br>
-			<tr height="60%">
-				<td align="center" colspan=2><font size="7" face="幼圆">添加分类</font><br></td>
-			</tr>
-			<td colspan=2>
-				<table class="table table-striped table-hover table-bordered"
-					width="300" height="140" align="center" cellspacing="0">
-					<br>
-					<tr>
-						<th><font size="4"face="幼圆">请输入分类的名字</font></th>
-						<th><input type="text" name="fname" /></th>
-					</tr>
-					<tr align="center">
-						<td colspan="2"><button class="btn btn-primary btn-sm">添加</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="reset" class="btn btn-success btn-sm">重填</button></td>
-					</tr>
-				</table>
-			</td>
-		</table>
-	</form>
+	<div class="container">
+		<h1 align="center">图书管理系统----添加分类页面</h1>
+
+         <hr width="1000px">
+
+		<form action="fenlei"  class="form-horizontal" method="post">
+
+			
+
+			<!-- <div class="form-group">
+				<label for="fid" class="col-sm-4 control-label">分类编号</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="fid"
+						name="fid">
+				</div>
+			</div> -->
+
+			<div class="form-group">
+				<label for="fname" class="col-sm-4 control-label">分类名称</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="fname" name="fname">
+				</div>
+			</div>
+
+			
+
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-4">
+					<button type="submit" class="btn btn-primary">添加分类</button>
+					<button type="reset" class="btn btn-primary">重置</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
 </body>
 </html>
