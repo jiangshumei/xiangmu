@@ -16,67 +16,28 @@
 <title>修改图书</title>
 <script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
-	window.onload = function() {//页面加载完成
-
-		ajax({
-			method : "POST",
-			url : "FenleiServlet",
-			params : "action=updateShowFenlei",
-			type : "xml",
-			success : function(data) {
-
-				var select = document.getElementById("fenleiList");
-
-				var fnames = data.getElementsByTagName("fname");
-
-				for (var i = 0; i < fnames.length; i++) {
-
-					var fname = fnames[i];
-
-					var opt = document.createElement("option");
-
-					var value;
-
-					if (window.addEventListener) {
-
-						value = fname.textContent;
-
-					} else {
-
-						value = text;
-					}
-
-					opt.innerHTML = value;
-
-					opt.value = value;
-
-					select.appendChild(opt);
-
-				}
-
-			}
-
-		});
-
-	};
+	
 </script>
 </head>
-<body background='images/03.jpg'>
-	<form action="updateBook" method="post">
+<body background='imgs/11.jpg'>
+	<form action="updatebook" method="post">
 	<table width="500px" height="550px" cellspacing="0" align="center">
 		<input type='hidden' name="id" value="${b.id}" />
+		<input type='hidden' name="_method" value="PUT" />
 		<br>
 		<tr height="20%">
 			<td colspan="2" align="center"><font size="7" face="幼圆">修改图书</font></td>
 		</tr>
 		<td colspan=2 valign="top">
 				<table class="table table-striped table-hover table-bordered"   width="500px" height="300px"
-					align="center" cellspacing="0"></td>			
+					align="center" cellspacing="0"></td>
+					
 			<tr align="center">
-				<td>选择分类:</td>
-				<td colspan="2"><select name="fname" id="fenleiList"
-					value="${b.fname }">
-				</select></td>
+				<td>分类名称:</td>
+				
+					<td colspan="2"><input type="text" name="fname" id="fname"
+					value="${b.fname }" /></td>
+				</td>
 			</tr>
 
 			<tr align="center">
@@ -108,30 +69,31 @@
 				<td colspan="2"><input type="text" name="jieshuren" id="jieshuren"
 					value="${b.jieshuren }" /></td>
 			</tr>
-			<div class="form-group">
-				<label for="fId" class="col-sm-4 control-label">分类名:</label>
-				<div class="col-sm-4">
-				<select  name="fId" id="fId" class="form-control" value="${b.fId}" >
+			<tr align="center">
+				<td>fid:</td>
+				<td colspan="2">
+				
+					<select  name="fId" id="fId" class="form-control" value="${b.fId }">
 			  <c:forEach items="${flist}" var="f">
 			
-			    <c:if test="${f.id==fenLei.id}">
+			    <c:if test="${f.id==fenlei.fid}">
 			   
-			      <option value="${f.id}" selected="selected" >${f.name}</option>
+			      <option value="${f.id}" selected="selected" >${f.fname}</option>
 			     </c:if>
-			     <c:if test="${f.id!=fenLei.id}">
-			  <option value="${f.id}">${f.name}</option>
-			  </c:if>
-			  
+			     <c:if test="${f.id!=fenlei.fid}">
+			  <option value="${f.id}">${f.fname}</option>
+			  </c:if>			  
 			  </c:forEach>
 				</select>	
-				</div>
-
-			</div>
-
+				</td>
+			</tr>
+			
 			<tr align="center">
 				<td colspan="2" align="center"><input type="submit" class="btn btn-primary btn-sm" value="修改" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
 					type="reset"class="btn btn-success btn-sm"  value="清空" /></td>
 			</tr>
+			
+			
 			</table>
 		</table>
 	</form>

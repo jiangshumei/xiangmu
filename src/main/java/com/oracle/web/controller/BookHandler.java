@@ -20,6 +20,7 @@ import com.oracle.web.service.FenleiService;
 @Controller
 @Scope(value = "prototype")
 public class BookHandler {
+	
 	private static final String NONE = null;
 	@Autowired
 	private BookService bookService;
@@ -84,16 +85,19 @@ public class BookHandler {
 		book.setId(id);
 		this.bookService.delete(book);
 
-		// System.out.println("pp");
+		 System.out.println("pp");
 		return "redirect:/showByPage";
 	}
 	
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
-	public String updateUI(@PathVariable(value = "id") Integer id, HttpSession session) {
+	public String updateUI(@PathVariable(value = "id") Integer id, HttpSession session,HttpServletRequest request) {
 
 		List<Fenlei> flist = this.fenleiService.list();
+		
+		//System.out.println("ok");
 
-		session.setAttribute("flist", flist);
+		request.getSession().setAttribute("flist", flist);
+		System.out.println(flist);
 
 		Book b = this.bookService.queryOne(id);
 
@@ -107,6 +111,7 @@ public class BookHandler {
 	public String update(Book book) {
 
 		bookService.update(book);
+		System.out.println("dfdd");
 
 		return "redirect:/showByPage";
 

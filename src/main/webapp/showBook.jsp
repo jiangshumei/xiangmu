@@ -240,7 +240,9 @@
 	<table class="table table-striped table-hover table-bordered"
 		width="800" height="280" align="center" cellspacing="0" id="h1">
 		<tr align="center">
+		<td>选项</td>
 			<td>图书编号</td>
+			<td>图书id</td>
 			<td>分类名称</td>
 			<td>图书名称</td>
 			<td>图书价格</td>
@@ -248,11 +250,14 @@
 			<td>状态</td>
 			<td>借书人</td>
 			<td>分类Id</td>
+			<td>删除</td>
 			<td>修改</td>
 		</tr>
 		<c:forEach items="${pb.beanList }" var="b" varStatus="s">
 			<tr align="center">
+			<td><input type="checkbox" name="ids" value="${b.id}"></td>
 				<td>${s.index+1 }</td>
+				<td>${b.id }</td>
 				<td>${b.fname}</td>
 				<td>${b.name}</td>
 				<td>${b.price}</td>
@@ -260,7 +265,8 @@
 				<td>${b.zhuangtai}</td>
 				<td>${b.jieshuren}</td>
 				<td>${b.fId }</td>
-				<%-- <td><input type="checkbox" name="ids" value="${b.id}"></td> --%>
+				<td><a href="deleteBook/${b.id}" class="deleteId btn btn-info" >删除</a></td>
+			    
 				<td><a href="book/${b.id}" class=" btn btn-info">修改</a></td>
 			</tr>
 		</c:forEach>
