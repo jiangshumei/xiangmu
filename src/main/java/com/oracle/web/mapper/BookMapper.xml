@@ -93,4 +93,8 @@
   <select id="showByPageHelper"  resultMap="BaseResultMap2">
    select *  from book,fenlei where book.f_id=fenlei.fid order by book.id desc
   </select>
+  
+  <select id="validateName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select name from book b where b.name=#{name}
+  </select>
 </mapper>

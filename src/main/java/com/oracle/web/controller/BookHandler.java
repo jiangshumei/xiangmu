@@ -1,7 +1,9 @@
 package com.oracle.web.controller;
 
+import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.oracle.web.bean.Book;
 import com.oracle.web.bean.Fenlei;
 import com.oracle.web.bean.SubBook;
@@ -82,22 +86,21 @@ public class BookHandler {
 		// String[] ids=id2.split(",");
 
 		Book book = new Book();
+		
 		book.setId(id);
+		
 		this.bookService.delete(book);
-
-		 System.out.println("pp");
+		
 		return "redirect:/showByPage";
 	}
 	
 	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
 	public String updateUI(@PathVariable(value = "id") Integer id, HttpSession session,HttpServletRequest request) {
 
-		List<Fenlei> flist = this.fenleiService.list();
-		
-		//System.out.println("ok");
+		List<Fenlei> fList = this.fenleiService.list();
 
-		request.getSession().setAttribute("flist", flist);
-		System.out.println(flist);
+		request.getSession().setAttribute("fList", fList);
+
 
 		Book b = this.bookService.queryOne(id);
 
@@ -111,10 +114,27 @@ public class BookHandler {
 	public String update(Book book) {
 
 		bookService.update(book);
-		System.out.println("dfdd");
-
+		
 		return "redirect:/showByPage";
 
+	}
+	
+	@RequestMapping(value = "validateName.action")
+	@ResponseBody
+	public String queryByname(String name,HttpServletResponse response) throws IOException{
+		
+		System.out.println(name);
+		
+		Book b =bookService.validateName(name);
+		
+		response .setContentType("text/html;charset=utf-8");
+		
+		if(b!=null){
+			response.getWriter().write("{\"valid\":\"false\"}");
+		}else{
+			response.getWriter().write("{\"valid\":\"true\"}");
+		}
+		return NONE;
 	}
 
 }

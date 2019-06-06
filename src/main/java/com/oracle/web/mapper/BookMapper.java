@@ -21,4 +21,6 @@ public interface BookMapper {
    
 
 	List<SubBook> selectAllWithOneSQL();
+
+	Book validateName(String name);
 }

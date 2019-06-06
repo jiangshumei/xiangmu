@@ -83,4 +83,11 @@ public class BookServiceimpl implements BookService {
 		return pb;
 	}
 
+	@Override
+	@Transactional 
+	public Book validateName(String name) {
+		// TODO Auto-generated method stub
+		return this.BookMapper.validateName(name);
+	}
+
 }
