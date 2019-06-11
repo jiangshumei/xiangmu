@@ -67,7 +67,7 @@ window.onload = function() {
 </script>
 
 </head>
-<body align="center" background='images/03.jpg'>	
+<body align="center" background='imgs/tp.jpg'>	
 <br>
 <br>
 <p align="center"><font size="7" face="幼圆">查看管理员信息</font></p>

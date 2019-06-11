@@ -38,6 +38,16 @@
     delete from book
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteMany" parameterType="java.lang.String">
+  delete from book where id in
+
+     <foreach collection="array" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+
+  </delete>
+  
   <insert id="insert" parameterType="com.oracle.web.bean.Book">
     <!--
       WARNING - @mbg.generated
@@ -97,4 +107,17 @@
   <select id="validateName" parameterType="java.lang.String" resultMap="BaseResultMap">
   select name from book b where b.name=#{name}
   </select>
+ 
+     <select id="queryBooks" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from book where id in
+  	<foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+  		
+  		#{arr}
+  	</foreach>
+  </select>
+  
+  <select id="selectAll2" resultMap="BaseResultMap">
+  	select * from book
+  </select>
+    
 </mapper>

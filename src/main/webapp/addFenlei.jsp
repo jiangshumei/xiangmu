@@ -22,7 +22,7 @@
 </c:if>
 <title>添加分类</title>
 </head>
-<body background="imgs/11.jpg">
+<body background="imgs/tp.jpg">
 	<form action="FenleiServlet?action=addFenlei" method="post">
 		<table align="center" width="400px" height="200px" cellspacing="0">
 			<br>

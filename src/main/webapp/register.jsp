@@ -281,7 +281,7 @@
 	 }*/
 </script>
 </head>
-<body background='images/04.jpg'>
+<body background='imgs/tp.jpg'>
 	<!-- <form action="AdminServlet?action=register" method="post"
 		name="register" onsubmit="return jiaoyan()"
 		enctype="multipart/form-data"> -->

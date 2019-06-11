@@ -81,7 +81,7 @@
 	};
 </script>
 </head>
-<body background="<%=base%>/images/03.jpg">
+<body background="<%=base%>/imgs/tp.jpg">
 
 	<table id="t" align="center" width="900" height="700" cellspacing="0">
 

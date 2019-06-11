@@ -19,7 +19,7 @@
     }
 </style>
 </head>
-<body background="images/04.jpg">
+<body background="imgs/tp.jpg">
 <table width="100%" height="1000px" cellspacing="0">
     <tr height="10px">
 	<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="7" color="#cc6600" face="幼圆"><b>Oracle</b></font><font size="6" color="#606060">图书管理系统</font><font size="4" color="#b2b2b2">|</font><font size="4" color="#606060"  >登录</font></td></tr>	

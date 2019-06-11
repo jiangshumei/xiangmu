@@ -22,4 +22,10 @@ public interface BookService {
 
 	Book validateName(String name);
 
+	void delete(String[] arr);
+
+	List<Book> list2();
+
+	List<Book> queryBooks(String[] arr);
+
 }

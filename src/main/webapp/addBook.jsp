@@ -13,8 +13,6 @@
 
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 
-<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
-
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
@@ -124,7 +122,7 @@
 
 
 </head>
-<body background="imgs/11.jpg">
+<body background="imgs/tp.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">

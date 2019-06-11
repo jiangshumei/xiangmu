@@ -118,7 +118,7 @@ window.onload=function(){//页面加载完成
  		}*/
 </script>
 </head>
-<body background="images/03.jpg">
+<body background="imgs/tp.jpg">
 	<form action="FenleiServlet?action=update" method="post">
 	<table align="center" width="500px" height="300px"  cellspacing="0">
 	<input type='hidden' name="fid" value="${f.fid}"/>

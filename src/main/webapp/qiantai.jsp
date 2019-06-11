@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body background='images/03.jpg'>
+<body background='imgs/tp.jpg'>
 <table cellspacing="0" width="100%" height="900px">
 <tr height="50px">
 <!-- 上 -->

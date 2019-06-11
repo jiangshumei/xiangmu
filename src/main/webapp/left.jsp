@@ -34,7 +34,7 @@
 </script>
 
 </head>
-<body bgcolor="#FAFAD2">
+<body bgcolor="white">
    <!-- Accordion -->
 <h2 class="demoHeaders">菜单</h2>
 <div id="accordion">
@@ -62,7 +62,7 @@
 	  </ul>
 	</div>
 	    
-	<h6>管理员信息管理</h6>
+	<h5>管理员信息管理</h5>
 	<div>
 	  <ul>
 	    <li><a href="showAdmin.jsp" target="right"><span class="ui-icon ui-icon-plusthick"></span>查看管理员信息</a></li>

@@ -20,7 +20,7 @@
 	
 </script>
 </head>
-<body background='imgs/11.jpg'>
+<body background='imgs/tp.jpg'>
 	<form action="updatebook" method="post">
 		<table width="500px" height="550px" cellspacing="0" align="center">
 			<input type='hidden' name="id" value="${b.id}" />

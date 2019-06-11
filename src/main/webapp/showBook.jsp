@@ -39,7 +39,7 @@
 
 		});
 	});
-	window.onload = function() {
+	$(function(){
 		var selectAll = document.getElementById("selectAll");
 		selectAll.onclick = function() {
 			var chek = document.getElementsByName("ids");
@@ -88,69 +88,130 @@
 			alert(str);
 			var queren = confirm("您确认要删除这些图书吗");
 			if (queren == true) {
-				location.href = "delete&ids=" + str;
+				
+				var $url = "delete/"+str;
+
+				$("#deleteForm").attr("action", $url);
+
+				$("#deleteForm").submit();
+
+				return false;
 			} else {
 				location.reload();
 			}
 		}
-		var outputAll = document.getElementById("outputAll");
 
-		outputAll.onclick = function() {
+			//导出全部
+				var outAll = document.getElementById("outAll");
+				
+				outAll.onclick = function(){
+					
+					var flag = confirm("你确定要导出所有分类？");
+					
+					if(flag){
+						
+						window.location.href = "outAll";
+					}
+				};
+				
+				
+				var outSelect=document.getElementById("outSelect");
+				
+				outSelect.onclick=function(){
+					
+			       var chek=document.getElementsByName("ids");
+					
+					//判断一下,选了没有
+					var flag=false;
+					
+					for(var i=0;i<chek.length;i++){
+						
+						if(chek[i].checked==true){
+							
+							flag=true;
+							
+							break;
+						}
+					}
+					
+					if(flag==false){
+						
+						alert("请至少勾选一个进行导出");
+						
+						location.href = "outSelect/";
+						
+						return;
+					}
+					
+					//如果选择了
+					var str="";
+					
+					for(var i=0;i<chek.length;i++){
+						
+						if(chek[i].checked==true){
+							
+							str+=chek[i].value+",";
+						}
+					}
+					
+					//去除最后一个逗号
+					str=str.slice(0,str.length-1);
+								
+					//发送给服务器
+					queren=confirm("您确认导出这些勾选的图书的信息吗？");
+					
+					if(queren==true){
+						
+						location.href = "outSelect/" + str;
+					}else{
+						
+						location.reload();
 
-			var queren = confirm("你确定导出所有页面数据吗？");
-
-			if (queren == true) {
-
-				window.location.href = "OutPutBookServlet?action=all";
-			}
-
-		};
-
-		var outputSelect = document.getElementById("outputSelect")
-
-		outputSelect.onclick = function() {
-
-			var check = document.getElementsByName("ids");
-
-			var flag = false;
-			for (i = 0; i < check.length; i++) {
-				if (check[i].checked == true) {
-
-					flag = true;
-
+					}
+					
+				}
+		/*
+		 //导出勾选
+		var outIds =document.getElementById("outIds");
+		
+		outIds.onclick = function(){
+			
+			var flag=false;
+			for(i=0;i<chek.length;i++){
+				
+				if(chek[i].checked==true){
+					flag=true;
 					break;
-
 				}
-
 			}
-			if (flag == false) {
-
-				alert("请至少勾选一个？？？");
-
+			if(flag==false){
+				alert("请至少选择一项");
 				return;
-			}
-
-			var str = "";
-			for (var i = 0; i < check.length; i++) {
-
-				if (check[i].checked == true) {
-
-					str += check[i].value + ",";
-
+			}else{
+				
+				var str="";
+				for(var i =0;i<chek.length;i++){
+					if(chek[i].checked==true){
+						str +=chek[i].value + ",";
+					}
 				}
-			}
-			str = str.slice(0, str.length - 1);
-
-			var queren = confirm("你确定导出所选用户的数据吗？");
-
-			if (queren == true) {
-
-				// window.location.href = "OutPutUserServlet?action=outSelect&ids="+ str;
-				window.location.href = "OutPutBookServlet?action=outputSelect&ids="
-						+ str;
+				str =str.slice(0,str.length-1);
+				var flag=confirm("你确定导出勾选的图书信息吗");
+				if(flag==true){
+					location.href="outIds/"+str;
+				}
 			}
 		};
-	};
+		
+		//导出全部
+		var outAll=document.getElementById("outAll");
+		outAll.onclick=function(){
+			var flag=comfirm("你确定导出所有图书信息吗");
+			if(flag==true){
+				window.location.href="outAll";
+			}
+		} */
+	});
 	$(function() {
 
 		$(".deleteId").click(function() {
@@ -168,7 +229,7 @@
 	});
 </script>
 </head>
-<body background='images/03.jpg'>
+<body background='imgs/tp.jpg'>
 	<br />
 	<p align="center">
 		<font size="7" face="幼圆">查看图书</font>
@@ -186,14 +247,26 @@
 					<input type="hidden" name="action" value="showBookByWhere">
 					<div class="control-group   ">
 						<br> <label class="col-md-4">分类： </label>
-						<div class="col-sm-7">
+						 <div class="col-sm-7">
 							<select name="fname" class="form-control  input-sm">
 								<option value="0">--请选择分类--</option>
-								<c:forEach items="${list }" var="b">
+								<%-- <c:forEach items="${list }" var="b">
 									<option>${b.fname}</option>
+								</c:forEach> --%>
+								<c:forEach items="${fList}" var="f" >
+
+									<c:if test="${f.fid==book.fenlei.fid}">
+
+										<option value="${f.fid}" selected="selected">${f.fname}</option>
+									</c:if>
+									<c:if test="${f.fid!=book.fenlei.fid}">
+										<option value="${f.fid}">${f.fname}</option>
+									</c:if>
 								</c:forEach>
+						</select>
 							</select><br>
-						</div>
+						</div> 
+						
 					</div>
 					<div class="control-group  ">
 						<br>
@@ -281,14 +354,14 @@
 	<table align="center">
 		<tr align="center">
 			<td colspan="9"><button id="selectAll"
-					class="btn btn-success btn-sm">全选</button>
-				<button id="noSelectAll" class="btn btn-success btn-sm">全不选</button>
-				<button id="fanxuan" class="btn btn-success btn-sm">反选</button>
+					class="btn btn-info btn-sm">全选</button>
+				<button id="noSelectAll" class="btn btn-info btn-sm">全不选</button>
+				<button id="fanxuan" class="btn btn-info btn-sm">反选</button>
 				 <!-- <button id="deleteBook" class="btn btn-success btn-sm">删除</button>  -->
-				<button id="outputSelect" class="btn btn-success btn-xs">导出选择</button>
-				<button id="outputAll" class="btn btn-success btn-xs">导出全部</button>
-				<td algin="center" colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button id="deleteBook" class="btn btn-danger btn-sm">删除</button>
+				<button id="outSelect" class="btn btn-info btn-sm">导出勾选</button>
+				<button id="outAll" class="btn btn-info btn-sm">导出全部</button>
+				<td algin="center" colspan="10">&nbsp;
+					<button id="deleteBook" class="btn btn-info btn-sm">删除</button>
 				</td></td>
 		</tr>
 	</table>

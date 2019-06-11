@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改分类</title>
 </head>
-<body background="images/03.jpg">
+<body background="imgs/tp.jpg">
 	<form action=FenleiServlet?action=update method="post">
 		<table align="center" width="400px" height="200px" border="1px"
 			cellspacing="0" bordercolor="silver">

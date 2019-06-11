@@ -122,7 +122,7 @@
 	}
 </script>
 </head>
-<body background='images/03.jpg'>
+<body background='imgs/tp.jpg'>
 <br>
 <br>
 <p align="center"><font size="7" face="幼圆">修改密码</font></p>
