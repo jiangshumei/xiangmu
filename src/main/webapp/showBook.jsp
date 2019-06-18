@@ -24,18 +24,18 @@
 <script>
 	$(function() {
 
-		$("tr:even").css("background-color", "Beige");
+		$("tr:even").css("background-color", "white");
 
-		$("tr:odd").css("background-color", "LightYellow");
+		$("tr:odd").css("background-color", "white");
 
 		$("tr").mouseover(function() {
 			$(this).css("background-color", "skyblue");
 		});
 
 		$("tr").mouseout(function() {
-			$("tr:even").css("background-color", "Beige");
+			$("tr:even").css("background-color", "white");
 
-			$("tr:odd").css("background-color", "LightYellow");
+			$("tr:odd").css("background-color", "white");
 
 		});
 	});
@@ -170,47 +170,7 @@
 					}
 					
 				}
-		/*
-		 //导出勾选
-		var outIds =document.getElementById("outIds");
 		
-		outIds.onclick = function(){
-			
-			var flag=false;
-			for(i=0;i<chek.length;i++){
-				
-				if(chek[i].checked==true){
-					flag=true;
-					break;
-				}
-			}
-			if(flag==false){
-				alert("请至少选择一项");
-				return;
-			}else{
-				
-				var str="";
-				for(var i =0;i<chek.length;i++){
-					if(chek[i].checked==true){
-						str +=chek[i].value + ",";
-					}
-				}
-				str =str.slice(0,str.length-1);
-				var flag=confirm("你确定导出勾选的图书信息吗");
-				if(flag==true){
-					location.href="outIds/"+str;
-				}
-			}
-		};
-		
-		//导出全部
-		var outAll=document.getElementById("outAll");
-		outAll.onclick=function(){
-			var flag=comfirm("你确定导出所有图书信息吗");
-			if(flag==true){
-				window.location.href="outAll";
-			}
-		} */
 	});
 	$(function() {
 

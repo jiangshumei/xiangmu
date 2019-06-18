@@ -46,7 +46,7 @@
 	  </ul>
 	</div>
    
-	<h4>图书管理</h4>
+	<h3>图书管理</h3>
 	<div>
 	  <ul>
 	    <li><a href="addUI" target="right"><span class="ui-icon ui-icon-plusthick"></span>添加图书</a></li>
@@ -54,7 +54,7 @@
 	  </ul>
 	</div>
 	    
-	<h5>用户管理</h5>
+	<h3>用户管理</h3>
 	<div>
 	  <ul>
 	    <li><a href="addUser.jsp" target="right"><span class="ui-icon ui-icon-plusthick"></span>添加用户</a></li>
@@ -62,7 +62,7 @@
 	  </ul>
 	</div>
 	    
-	<h5>管理员信息管理</h5>
+	<h3>管理员信息管理</h3>
 	<div>
 	  <ul>
 	    <li><a href="showAdmin.jsp" target="right"><span class="ui-icon ui-icon-plusthick"></span>查看管理员信息</a></li>

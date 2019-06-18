@@ -302,7 +302,7 @@ public class BookHandler {
 
 		String disposition = "attachment;filename=" + fileName;
 
-		// 设置两个响应头信息即可 (两个头)，告诉浏览器，我这个东西是下载的
+		// 设置两个响应头信息即可 (两个头)，告诉浏览器，
 
 		resp.setHeader("Content-Type", mime);
 
@@ -475,4 +475,7 @@ public class BookHandler {
 			return null;
 
 		}
+		
+		//高级搜索
+		
 }
