@@ -20,4 +20,12 @@ public interface BookService {
 
 	pageBean<SubBook> showByPage(Integer pageNow);
 
+	Book validateName(String name);
+
+	void delete(String[] arr);
+
+	List<Book> list2();
+
+	List<Book> queryBooks(String[] arr);
+
 }

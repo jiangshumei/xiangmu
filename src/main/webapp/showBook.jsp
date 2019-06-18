@@ -273,18 +273,15 @@
 
 	</form>
 	<table align="center">
-		<tr align="center">
-			<td colspan="9"><button id="selectAll"
-					class="btn btn-success btn-sm">全选</button>
-				<button id="noSelectAll" class="btn btn-success btn-sm">全不选</button>
-				<button id="fanxuan" class="btn btn-success btn-sm">反选</button>
-				 <!-- <button id="deleteBook" class="btn btn-success btn-sm">删除</button>  -->
-				<button id="outputSelect" class="btn btn-success btn-xs">导出选择</button>
-				<button id="outputAll" class="btn btn-success btn-xs">导出全部</button>
-				<td algin="center" colspan="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button id="deleteBook" class="btn btn-danger btn-sm">删除</button>
-				</td></td>
-		</tr>
+		<tr >
+				<td><button class="btn btn-info btn-xs" id="selectAll">全选</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-info btn-xs" id="noselectAll">全不选</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-info btn-xs" id="fanxuan">反选</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-info btn-xs" id="outIds">导出选中</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			        <button class="btn btn-info btn-xs" id="outAll">导出全部</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			        <button class="btn btn-info btn-xs" id="deleteFenlei">删除</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+			</tr>
 	</table>
 	<center>
 		<p>

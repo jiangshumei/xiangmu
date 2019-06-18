@@ -6,8 +6,9 @@ import com.oracle.web.bean.SubBook;
 import java.util.List;
 
 public interface BookMapper {
-   
-    int deleteByPrimaryKey(Integer id);
+  
+
+	int deleteByPrimaryKey(Integer id);
 
     int insert(Book record);
 
@@ -21,4 +22,12 @@ public interface BookMapper {
    
 
 	List<SubBook> selectAllWithOneSQL();
+
+	Book validateName(String name);
+
+	void deleteMany(String[] arr);
+
+	List<Book> selectAll2();
+
+	List<Book> queryBooks(String[] arr);
 }

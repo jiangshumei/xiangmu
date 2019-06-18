@@ -1,6 +1,7 @@
 package com.oracle.web.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class BookServiceimpl implements BookService {
 		
          pageBean<SubBook> pb = new pageBean<SubBook>();
 		
-		PageHelper.startPage(pageNow, 2);
+		PageHelper.startPage(pageNow, 4);
 		
 		List<SubBook> list = this.BookMapper.showByPageHelper();
 		
@@ -81,6 +82,31 @@ public class BookServiceimpl implements BookService {
 		pb.setpageSize(pi.getPageSize());
 		
 		return pb;
+	}
+
+	@Override
+	@Transactional 
+	public Book validateName(String name) {
+		// TODO Auto-generated method stub
+		return this.BookMapper.validateName(name);
+	}
+
+	@Override
+	public void delete(String[] arr) {
+		// TODO Auto-generated method stub
+		this.BookMapper.deleteMany(arr);
+	}
+
+	@Override
+	public List<Book> list2() {
+		// TODO Auto-generated method stub
+		return this.BookMapper.selectAll2();
+	}
+
+	@Override
+	public List<Book> queryBooks(String[] arr) {
+		// TODO Auto-generated method stub
+		return this.BookMapper.queryBooks(arr);
 	}
 
 }

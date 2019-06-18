@@ -17,16 +17,55 @@ public interface FenleiService {
 
 	int counts();
 
-	void delete(Fenlei fenlei);
+	/*void delete(Fenlei fenlei);*/
 
 	void update(Fenlei fenlei);
 
 	Fenlei selectByPrimaryKey(Integer id);
 
 	Fenlei queryone(String fname);
+	
 
-	/*int deleteFenlei(String ids);*/
+	List<Fenlei> outPutFenleiIds(String ids1);
+
+	List<Fenlei> outPutFenleiAll();
+
+/*	Fenlei yzfenleiupdate(String fname);*/
+
+	
+
+	void delete(String[] arr);
+
+	int yanzhengAddFenlei2(Integer fid);
+
+	//Fenlei yzfenleiupdate(String fname);
+
+	Fenlei validateName(String fname);
+
+	Fenlei queryOne(String fname);
+
+	
+	
 
 
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+
+
+	
+	
 
 }

@@ -18,7 +18,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body background="images/03.jpg">
+<body background="imgs/14.jpg">
 	<div class="container">
 		<h1 align="center">图书管理系统----分类修改页面</h1>
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FenleiMapper {
 
-	int deleteByPrimaryKey(Integer fid);
+	/*int deleteByPrimaryKey(Integer fid);*/
 
 	int insert(Fenlei record);
 
@@ -21,5 +21,24 @@ public interface FenleiMapper {
 	List<Fenlei> selectAllByPageHelper();
 
 	Fenlei selectFenleiByFname(String fname);
+
+	
+	List<Fenlei> selectOutPutIds(List<Integer> list);
+
+	
+	
+
+	void deleteByPrimaryKey1(String[] arr);
+
+	int yanzhengAddFenlei2(Integer fid);
+
+	Fenlei selectFenleiByFname1(String fname);
+
+	Fenlei validateName(String fname);
+
+	Fenlei queryOne(String fname);
+
+
+	
 
 }

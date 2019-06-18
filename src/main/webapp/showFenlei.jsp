@@ -18,72 +18,57 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
-
+ 
 <script type="text/javascript">
 	$(function() {
 
-		$(".deleteId").click(function() {
-
-			var $url = this.href;
-
-			$("#deleteForm").attr("action", $url);
-
-			//提交表单 
-
-			$("#deleteForm").submit();
-
-			return false;
-
-		});
-
-	});
-	
-	
-	window.onload = function() {
+		var chek = document.getElementsByName("ids");
 
 		var selectAll = document.getElementById("selectAll");
 
 		selectAll.onclick = function() {
+			//全选
 
-			var chek = document.getElementsByName("ids");
-
-			for (var i = 0; i < chek.length; i++) {
+			for (i = 0; i < chek.length; i++) {
 
 				chek[i].checked = true;
+
 			}
-		};
 
-		var noselectAll = document.getElementById("noselectAll");
+		}
+		//全不选
+		var selectNot = document.getElementById("noselectAll");
 
-		noselectAll.onclick = function() {
+		selectNot.onclick = function() {
 
-			var chek = document.getElementsByName("ids");
-
-			for (var i = 0; i < chek.length; i++) {
+			for (i = 0; i < chek.length; i++) {
 
 				chek[i].checked = false;
-			}
-		};
 
+			}
+
+		}
+
+		//反选
 		var fanxuan = document.getElementById("fanxuan");
+		var chek = document.getElementsByName("ids");
 
 		fanxuan.onclick = function() {
 
-			var chek = document.getElementsByName("ids");
-
-			for (var i = 0; i < chek.length; i++) {
-
+			for (i = 0; i < chek.length; i++) {
 				if (chek[i].checked == true) {
-
 					chek[i].checked = false;
+
 				} else {
 					chek[i].checked = true;
+
 				}
 
 			}
-		};
 
-		var deleteFenlei = document.getElementById("fenlei_delete");
+		}
+
+		var deleteFenlei = document.getElementById("deleteFenlei");
 
 		deleteFenlei.onclick = function() {
 
@@ -91,7 +76,8 @@
 
 			var flag = false;
 
-			for (var i = 0; i < chek.length; i++) {
+			for (i = 0; i < chek.length; i++) {
+
 				if (chek[i].checked == true) {
 					flag = true;
 					break;
@@ -99,136 +85,178 @@
 			}
 
 			if (flag == false) {
-				alert("请你至少勾选一项进行删除");
+				alert("请至少选一项");
+				location.href = "http://locahost/fenleis"
 				return;
+
 			}
 
 			var str = "";
+
 			for (var i = 0; i < chek.length; i++) {
+
 				if (chek[i].checked == true) {
 
 					str += chek[i].value + ",";
+
+				}
+			}
+			str = str.slice(0, str.length - 1);
+
+			var flag = confirm("你确定删除所勾选的分类吗？");
+			if (flag == true) {//确定
+				//拿到请求地址
+
+				var $url = "http://localhost/xiangmu/delete/" + str;
+
+				alert($url);
+
+				//拿到表单
+				$("#deleteForm").attr("action", $url);
+
+				//提交表单
+				$("#deleteForm").submit();
+
+				return false;
+
+			} else {//取消
+
+				//window.location.href = "http://localhost/book/fenleis/1";
+				location.reload();
+
+			}
+
+		};
+
+		//导出部分	  
+		var outIds = document.getElementById("outIds");
+
+		outIds.onclick = function() {
+
+			var flag = false;
+
+			for (i = 0; i < chek.length; i++) {
+
+				if (chek[i].checked == true) {
+					flag = true;
+					break;
 				}
 			}
 
-			str = str.slice(0, str.length - 1);
+			if (flag == false) {
+				alert("请至少选一项");
+				return;
 
-			alert(str);
-
-			//发送给服务器
-			var queren = confirm("你确定要删除这些分类吗？");
-
-			if (queren == true) {
-
-				location.href = "deleteFenlei/&ids" + str;
 			} else {
-				location.reload();
+
+				var str = "";
+
+				for (var i = 0; i < chek.length; i++) {
+
+					if (chek[i].checked == true) {
+
+						str += chek[i].value + ",";
+
+					}
+				}
+				str = str.slice(0, str.length - 1);
+
+				var flag = confirm("你确定导出所勾选的分类信息吗？");
+				if (flag == true) {//确定
+					window.location.href = "http://localhost/xiangmu/outPutFenlei/"
+							+ str;
+
+				} else {//取消
+
+					window.location.href = "http://localhost/xiangmu/fenleis1";
+				}
+			}
+		};
+		//导出全部
+		var outAll = document.getElementById("outAll");
+		outAll.onclick = function() {
+			var flag = confirm("你确定导出全部的分类信息吗？");
+			if (flag == true) {//确定
+				window.location.href = "http://localhost/xiangmu/outPutFenlei/a";
+
+			} else {//取消
+
+				window.location.href = "http://localhost/xiangmu/fenleis1/${pb.pageNow}";
 			}
 
 		}
-	};
-	
-/* 	
-	var outAll = document.getElementById("outAll");
+	});
+	/* 
+	  $(function() {
 
-	outAll.onclick = function() {
+	$(".deleteId").click(function() {
 
-		var flag = confirm("你确定要导出全部的用户信息吗？");
+		var $url = this.href;
 
-		if (flag) {
+		$("#deleteForm").attr("action", $url);
 
-			window.location.href = "OutPutUserServlet?action=all"
+		//提交表单 
 
-		}
+		$("#deleteForm").submit();
 
-	};
+		return false;
 
-	var outSelect = document.getElementById("outSelect");
+	});
 
-	outSelect.onclick = function() {
-
-		var chek = document.getElementsByName("ids");
-
-		var flag = false;
-
-		for (var i = 0; i < chek.length; i++) {
-			if (chek[i].checked == true) {
-				flag = true;
-				break;
-			}
-		}
-
-		if (flag == false) {
-			alert("请你至少勾选一项进行导出");
-			return;
-		}
-
-		var str = "";
-		for (var i = 0; i < chek.length; i++) {
-			if (chek[i].checked == true) {
-
-				str += chek[i].value + ",";
-			}
-		}
-
-		str = str.slice(0, str.length - 1);
-
-		//alert(str);
-
-		//发送给服务器
-		var flag = confirm("你确定要导出勾选的分类信息吗？");
-
-		if (flag) {
-
-			location.href = "OutPutUserServlet?action=outSelect&ids=" + str;
-		} else {
-			location.reload();
-		}
-
-	} */
-
-
-	
-	
+	});   */
 </script>
 
 </head>
-<body background="images/03.jpg">
+<body>
+
+
+
 	<div class="container">
 		<h1 align="center">图书管理系统----分类列表页</h1>
 		<hr width="1300px">
 
+
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active"><a id="selectAll"
+				href="#">全选</a></li>
+			<li role="presentation"><a id="noselectAll" href="#">全不选</a></li>
+			<li role="presentation"><a id="fanxuan" href="#">反选</a></li>
+			<li role="presentation"><a id="outIds" href="#">导出选中</a></li>
+			<li role="presentation"><a id="outAll" href="#">导出全部</a></li>
+			<li role="presentation"><a id="deleteFenlei" href="#">删除</a></li>
+		</ul>
+
+		<p>
 		<table class="table table-bordered table-hover table-striped">
 			<tr>
 				<td>选择</td>
 				<td>编号</td>
 				<td>id</td>
 				<td>分类名称</td>
-				<td>删除</td>
 				<td>修改</td>
 			</tr>
 			<c:forEach items="${pb.beanList}" var="s" varStatus="ss">
 				<tr>
-				<td><input type="checkbox" name="ids" value="${s.fid }" /></td>
-				  <td>${ss.index+1 }</td>
+					<td><input type="checkbox" name="ids" value="${s.fid }" /></td>
+					<td>${ss.index+1 }</td>
 					<td>${s.fid}</td>
 					<td>${s.fname}</td>
-					<td><a href="http://localhost/xiangmu/fenlei_delete/${s.fid}"
-						class="deleteId btn btn-danger">删除</a></td>
+					<!-- <td>删除</td> -->
 					<td><a href="http://localhost/xiangmu/fenlei/${s.fid}"
 						class="btn btn-success">修改</a></td>
 				</tr>
 			</c:forEach>
 
-			<tr>
+			<!-- <tr >
 				<td><button class="btn btn-info btn-xs" id="selectAll">全选</button>&nbsp;&nbsp;&nbsp;&nbsp;
 					<button class="btn btn-info btn-xs" id="noselectAll">全不选</button>&nbsp;&nbsp;&nbsp;&nbsp;
 					<button class="btn btn-info btn-xs" id="fanxuan">反选</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="btn btn-info btn-xs" id="outSelect">导出选中</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-info btn-xs" id="outIds">导出选中</button>&nbsp;&nbsp;&nbsp;&nbsp;
 			        <button class="btn btn-info btn-xs" id="outAll">导出全部</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="btn btn-info btn-xs" id="fenlei_delete">删除</button></td>
-			</tr>
-			
+			        <button class="btn btn-info btn-xs" id="deleteFenlei">删除</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+			</tr> -->
+
 		</table>
 		<!-- 准备一个隐藏表单 -->
 		<form action="" method="POST" id="deleteForm">

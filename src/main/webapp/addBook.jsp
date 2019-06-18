@@ -13,8 +13,6 @@
 
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 
-<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
-
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
@@ -28,7 +26,21 @@
 				validating : "glyphicon glyphicon-refresh"
 			},
 			fields : {
+				
 				fname : {
+					validators : {
+						notEmpty : {
+							message : '分类名不能为空'
+						},
+						regexp : {
+							regexp :  /^[\u0391-\uFFE5]{1,20}$/,
+							message : '分类名必须是1~20个汉字'
+						},
+
+					}
+				},
+			
+				name : {
 					validators : {
 						notEmpty : {
 							message : '书名不能为空'
@@ -37,6 +49,20 @@
 							regexp : /^[\u0391-\uFFE5]{1,20}$/,
 							message : '书名必须是1~20个汉字'
 						},
+                     remote:{
+					 		
+					 		url:"validateName.action",
+					 		message:'图书名已存在，请重新输入',
+					 		delay:500,
+					 		type:'POST',
+					 		data:function(validator){
+					 			return {
+					 			name:$("input[name=name]").val(),
+					 			}
+					 		}
+					 		
+					 	}
+
 					}
 				},
 				price : {
@@ -96,7 +122,7 @@
 
 
 </head>
-<body background="imgs/11.jpg">
+<body background="imgs/tp.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -175,7 +201,6 @@
 			
 			
 				</form>
-
 			</div>
 
 		</div>

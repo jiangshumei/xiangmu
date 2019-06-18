@@ -11,7 +11,7 @@
     <result column="jieshuren" jdbcType="VARCHAR" property="jieshuren" />
     <result column="f_id" jdbcType="INTEGER" property="fId" />
   </resultMap>
-  
+ 
    <resultMap id="BaseResultMap2" type="com.oracle.web.bean.SubBook">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="fname" jdbcType="VARCHAR" property="fname" />
@@ -38,6 +38,16 @@
     delete from book
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteMany" parameterType="java.lang.String">
+  delete from book where id in
+
+     <foreach collection="array" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+
+  </delete>
+  
   <insert id="insert" parameterType="com.oracle.web.bean.Book">
     <!--
       WARNING - @mbg.generated
@@ -93,4 +103,21 @@
   <select id="showByPageHelper"  resultMap="BaseResultMap2">
    select *  from book,fenlei where book.f_id=fenlei.fid order by book.id desc
   </select>
+  
+  <select id="validateName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select name from book b where b.name=#{name}
+  </select>
+ 
+     <select id="queryBooks" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from book where id in
+  	<foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+  		
+  		#{arr}
+  	</foreach>
+  </select>
+  
+  <select id="selectAll2" resultMap="BaseResultMap">
+  	select * from book
+  </select>
+    
 </mapper>

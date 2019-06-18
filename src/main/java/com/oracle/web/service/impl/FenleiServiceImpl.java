@@ -3,6 +3,8 @@ package com.oracle.web.service.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,16 +51,14 @@ public  class FenleiServiceImpl implements FenleiService {
 		return this.fenleiMapper.counts();
 	}
 
-	@Override
+	/*@Override
 	@Transactional
 	public void delete(Fenlei fenlei) {
 		// TODO Auto-generated method stub
 		
 		 this.fenleiMapper.deleteByPrimaryKey(fenlei.getFid());
 		
-	}
-
-	
+	}*/
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -110,12 +110,76 @@ public  class FenleiServiceImpl implements FenleiService {
 		return pb;
 	}
 
-	/*@Override
-	@Transactional
-	public int deleteFenlei(String ids) {
+	
+
+	
+
+	@Override
+	public List<Fenlei> outPutFenleiAll() {
 		// TODO Auto-generated method stub
-		return this.deleteFenlei(ids);
-	}*/
+		
+		return this.fenleiMapper.selectAllByPageHelper();
+		
+	}
+
+	@Override
+	@Transactional
+	public List<Fenlei> outPutFenleiIds(String ids1) {
+		// TODO Auto-generated method stub
+		String[] a = ids1.split(",");
+		 
+		 List<Integer> list =new ArrayList<Integer>();
+		 for (int i = 0; i < a.length; i++) {
+	           
+				list.add(Integer.parseInt(a[i]));
+				 
+			}
+		return this.fenleiMapper.selectOutPutIds(list);
+	}
+
+
+
+	@Override
+	@Transactional
+	public void delete(String[] arr) {
+		// TODO Auto-generated method stub
+		this.fenleiMapper.deleteByPrimaryKey1(arr);
+	}
+
+	@Override
+	@Transactional
+	public int yanzhengAddFenlei2(Integer fid) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.yanzhengAddFenlei2(fid);
+	}
+
+//	@Override
+//	@Transactional
+//	public Fenlei yzfenleiupdate(String fname) {
+//		// TODO Auto-generated method stub
+//		return this.fenleiMapper.selectFenleiByFname1(fname);
+//	}
+
+	@Override
+	public Fenlei validateName(String fname) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.validateName(fname);
+	}
+
+	@Override
+	public Fenlei queryOne(String fname) {
+		// TODO Auto-generated method stub
+		return this.fenleiMapper.queryOne(fname);
+	}
+
+	
+
+	
+
+	
+
+
+	
 
 	
 
